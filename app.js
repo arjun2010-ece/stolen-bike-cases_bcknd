@@ -11,8 +11,8 @@ require('dotenv').config();
 // import mongoose
 
 //import routes
-const categoryRoutes = require("./routes/category");
-const keywordRoutes = require("./routes/keyword");
+const logsRoutes = require("./routes/logs");
+const userRoutes = require("./routes/user");
 
 
 
@@ -34,8 +34,8 @@ app.use(cookieParser());
 
 // routes middleware
 
-app.use("/api", categoryRoutes);
-app.use("/api", keywordRoutes);
+app.use("/api", logsRoutes);
+app.use("/api", userRoutes);
 
 
 const port = process.env.PORT || 8001;
