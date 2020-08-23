@@ -1,121 +1,36 @@
-## Tasks
+# Stolen Bike Cases - JOIN Coding Challenge - Backend (Node.js)
+![JOIN Stolen Bike Cases](https://github.com/join-com/coding-challenge-backend-nodejs/raw/master/illustration.png)
 
-## Requirements
+## Context
+Stolen bikes are a typical problem in Berlin. The Police want to be more efficient in resolving stolen bike cases. They decided to build a software that can automate their processes — the software that you're going to develop. 
 
-Please use:
+## Product Requirements
+- [ ] Bike owners can report a stolen bike.
+- [ ] New stolen bike cases should be automatically assigned to any free police officer.  
+- [ ] A police officer can only handle one stolen bike case at a time. 
+- [ ] When the Police find a bike, the case is marked as resolved and the responsible police officer becomes available to take a new stolen bike case. 
+- [ ] The system should be able to assign unassigned stolen bike cases automatically when a police officer becomes available.
 
-- `node` (can be LTS of current)
-- `yarn`
-- `jest`
+## Your Mission
+Your task is to provide APIs for a frontend application that satisfies all requirements above.
 
-### Mandatory requirement is to publish the application in one of the popular hosting services e.g. Heroku, AWS, etc
+Please stick to the Product Requirements. You should not implement authorisation and authentication, as they are not important for the assessment. Assume everyone can make requests to any API. 
 
-### Seeding database
+## Tech Requirements
+- Node.js
+- **Tests (quality and coverage)**
+- You are free to use any framework, but it’s recommended that you use one that you’re good at
+- Use only SQL Database
+- Typescript is a plus
 
-Seeds are located in `data/users.json`. The format is tightly coupled with mongodb, but feel fre to adjust it and use it in the DB of your choice.
+## Starting Materials
+For your convenience, you can use one of our service bootstrap template to help you started coding quicker without a hassle, 
+but please note - it has our own opinionated Linting and Typescript by default: **https://github.com/join-com/server-template-public**
 
-### Log file
-
-Sample log file is located in `data/events.log`
-
-## Task
-
-### Part 1
-
-Your task is to create a micro service application that will allow authorized requests to read logs processed by the application server.
-
-Additional information:
-* The credentials are in the users.json file in the data folder in this repository
-* For the purposes of the application, we use the generated events.log file with samples located in the data folder in this repository. The structure of the logs looks like this:
-
-example log entry:
-
-| timestamp | UUIDv4 | type | message |
-|---|---|---|---|
-| 1584969745903 | eab576a7-ea7f-4ce1-acfb-4e97d3a4a5bb | warn | AccessDenied: You are not authorize |
-
-Implement the following requests:
-
-1. The ability to download the entire list of logs or specific range from/to based on timestamp
-```
-Request:
-  Header:
-  authorization-token: String (UUIDv4)
-  GET /public/logs?from=...&to=...
-Response:
-  [
-    {
-      uuid:    String (UUIDv4)
-      time:    String (format ISO)
-      type:    String (info|warn|error)
-      message: String
-    }
-  ]
-  Status: 200
-```
-2. The possibility to find a specific entry with a given UUID
-```
-
-Request:
-  Header:
-  authorization-token: String (UUIDv4)
-  GET /public/logs/:uuid
-Response:
-  {
-    time:    String (format ISO)
-    type:    String (info|warn|error)
-    message: String
-  }
-  Status: 200
-```
-3. The ability for admin user to create a new one (non-admin) with a list of permissions (only read and create permissions should be possible)
-```
-Request:
-  Header:
-  authorization-token: String (UUIDv4)
-  POST /internal/users
-  Body:
-  {
-    username:    String
-    permissions: [String] (read|create)
-  }
-Response:
-  {
-    username:    String
-    token:       String   (UUIDv4)
-    permissions: [String] (read|create)
-  }
-  Status: 201
-```
-
-There will be evaluated whether:
-* your solution realizes task assumptions
-* your code is consistent or using a linter
-* app is covered to the point we may assume you know how to write specs
-* you avoid a procedural code
-* requests are properly handled
-* git log structure is consistent
-* project structure is well thought out
-* exceptions are properly handled
-* inputs are validated
-
-You may also gain extra points if your solution will be somehow extraordinary and will use best practices
-
-### Part 2
-
-The management decided to dockerize the application. Your task is to prepare the application from task #1 so that it works in development environment in the Docker container.
-
-We want to be able to change the database connection string depending on the environment (development/test)
-
-The result should be a script that will allow:
-* run a working application server in the container
-* run application tests in the container
-
-e.g. with the help of docker-compose
-
-There will be evaluated whether:
-* your solution realizes task assumptions
-* npm modules are cached properly during docker image building
-* environment variables are passed correctly
-
-You may also gain extra points if your solution will be somehow extraordinary and will use best practices
+## Instructions
+- Build a performant, **clean and well-structured solution**.
+- Commit early and often. We want to be able to check your progress.
+- Please complete your working solution within 3 days of receiving this challenge.
+- Please **do not** spend more than 4 hours.
+- **Send us an email with a link to repository when you finish the assesment**.
+- **Optionally, send us a link to a deployed version on Vercel or any other service that will expose that API for testing**.

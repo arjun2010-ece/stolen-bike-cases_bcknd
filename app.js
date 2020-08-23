@@ -11,8 +11,8 @@ require('dotenv').config();
 // import mongoose
 
 //import routes
-const logsRoutes = require("./routes/logs");
-const userRoutes = require("./routes/user");
+// const logsRoutes = require("./routes/logs");
+// const userRoutes = require("./routes/user");
 
 
 
@@ -34,9 +34,11 @@ app.use(cookieParser());
 
 // routes middleware
 
-app.use("/api", logsRoutes);
-app.use("/api", userRoutes);
-
+// app.use("/api", logsRoutes);
+// app.use("/api", userRoutes);
+app.get("/api", (req, res) => {
+    res.send("something created...")
+})
 
 const port = process.env.PORT || 8001;
 
