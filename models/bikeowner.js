@@ -1,28 +1,26 @@
 const mongoose = require("mongoose");
 const {ObjectId} = mongoose.Schema;
 
-var logsSchema = new mongoose.Schema({ 
-    timestamp: {
+var bikeOwnerSchema = new mongoose.Schema({ 
+    name: {
         type: String,
         trim: true,
         required: true
     },
-    UUIDv4: {
+    address: {
         type: String,
         trim: true,
         required: true
     },
-    type: {
+    contactNumber: {
         type: String,
-        trim: true,
-        required: true
+        trim: true
     },
-    message: {
+    email: {
         type: String,
         trim: true,
-        required: true
     }
 
 }, { timestamps: true });
 
-module.exports = mongoose.model("Logs", logsSchema);
+module.exports = mongoose.model("BikeOwner", bikeOwnerSchema);

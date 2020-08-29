@@ -4,15 +4,13 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
-
-
 require('dotenv').config();
-// import mongoose
+
 
 //import routes
-// const logsRoutes = require("./routes/logs");
-// const userRoutes = require("./routes/user");
+const bikeownerRoutes = require("./routes/bikeowner");
+const policeOfficerRoutes = require("./routes/police_officer");
+const reportRoutes = require("./routes/report");
 
 
 
@@ -20,7 +18,8 @@ require('dotenv').config();
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true    
+    useUnifiedTopology: true,
+    useFindAndModify: false    
 }).then(() => console.log('DB Connected'))
 
 mongoose.connection.on('error', err => {
@@ -35,10 +34,10 @@ app.use(cookieParser());
 // routes middleware
 
 // app.use("/api", logsRoutes);
-// app.use("/api", userRoutes);
-app.get("/api", (req, res) => {
-    res.send("something created...")
-})
+app.use("/api", bikeownerRoutes);
+app.use("/api", policeOfficerRoutes);
+app.use("/api", reportRoutes);
+
 
 const port = process.env.PORT || 8001;
 
